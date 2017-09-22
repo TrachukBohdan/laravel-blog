@@ -5,7 +5,14 @@
     <div class="row">
         <div class="col-12">
             <h1>Update post</h1>
-            <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
+
+                {!! Form::open(['url' => 'admin/post/update' ]) !!}
+
+                    @include('admin.pages.posts.forms.post')
+                    {!! Form::submit('Update') !!}
+
+                {!! Form::close() !!}
+
         </div>
     </div>
 

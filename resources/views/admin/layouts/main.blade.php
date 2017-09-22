@@ -28,7 +28,7 @@
 
             <div class="container-fluid">
 
-                @include('admin.parts.breadcrumbs')
+                {{--@include('admin.parts.breadcrumbs')--}}
 
                 @yield('content')
 

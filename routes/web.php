@@ -21,6 +21,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('add', 'PostController@showAddPost');
         Route::get('edit', 'PostController@showEditPost');
 
+        Route::post('store', 'PostController@storePost');
+        Route::post('update', 'PostController@updatePost');
+        Route::get('delete', 'PostController@deletePost');
     });
 
     Route::group(['prefix' => 'dashboard'], function(){

@@ -5,7 +5,14 @@
     <div class="row">
         <div class="col-12">
             <h1>Add post</h1>
-            <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
+
+            {!! Form::open(['url' => 'admin/post/store' ]) !!}
+
+                @include('admin.pages.posts.forms.post')
+                {!! Form::submit('Create') !!}
+
+            {!! Form::close() !!}
+
         </div>
     </div>
 
