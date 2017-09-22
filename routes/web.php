@@ -11,10 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+
+    Route::group(['prefix' => 'post'], function(){
+
+        Route::get('list', 'PostController@showPostList');
+        Route::get('add', 'PostController@showAddPost');
+        Route::get('edit', 'PostController@showEditPost');
+
+    });
+
+    Route::group(['prefix' => 'dashboard'], function(){
+
+        Route::get('/', 'DashboardController@showDashboard');
+
+    });
+});
