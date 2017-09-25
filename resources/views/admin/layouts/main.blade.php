@@ -14,6 +14,7 @@
         <link href="{{asset('themes/admin/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
         <link href="{{asset('themes/admin/css/sb-admin.css')}}" rel="stylesheet">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         @yield('custom-header-assets')
 

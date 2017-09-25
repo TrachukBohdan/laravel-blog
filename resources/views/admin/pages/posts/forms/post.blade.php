@@ -22,3 +22,8 @@
 
 </div>
 
+<input type="hidden" name="img" />
+
+
+
+

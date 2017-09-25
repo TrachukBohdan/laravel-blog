@@ -61,7 +61,8 @@ class PostController extends Controller
 
         $user->posts()->create([
             'title' => $request->title,
-            'article' => $request->article
+            'article' => $request->article,
+            'img' => $request->img
         ]);
 
         session()->flash('success', 'The post was added successfully');
@@ -81,7 +82,8 @@ class PostController extends Controller
 
         $post->update([
             'title' => $request->title,
-            'article' => $request->article
+            'article' => $request->article,
+            'img' => $request->img
         ]);
 
         session()->flash('success', 'The post was updated successfully');

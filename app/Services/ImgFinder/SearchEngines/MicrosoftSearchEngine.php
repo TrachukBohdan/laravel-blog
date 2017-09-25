@@ -5,7 +5,6 @@ namespace App\Services\ImgFinder\SearchEngines;
 use App\Services\ImgFinder\Contracts\ASearchEngine;
 use App\Services\ImgFinder\Exceptions\ImgNotFoundException;
 use GuzzleHttp\Client;
-use Mockery\Exception;
 
 class MicrosoftSearchEngine extends ASearchEngine
 {
@@ -38,7 +37,7 @@ class MicrosoftSearchEngine extends ASearchEngine
         }
 
         shuffle($responseImgs);
-        return $responseImgs[0]->contentUrl;
+        return strval($responseImgs[0]->contentUrl);
 
     }
 }

@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'post'], function(){
 
@@ -24,6 +24,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::post('store', 'PostController@storePost');
         Route::post('update', 'PostController@updatePost');
         Route::get('delete/{postId}/{confirm?}', 'PostController@deletePost');
+    });
+
+    Route::group(['prefix' => 'api'], function(){
+
+        Route::post('random-img', 'RandomImgController@getImg');
+
     });
 
     Route::get('/', 'DashboardController@showDashboard');
