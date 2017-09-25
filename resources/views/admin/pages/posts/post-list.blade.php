@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-12">
-            <h1>List of posts</h1>
+            <h3>List of posts</h3>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -12,8 +12,6 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>User</th>
-                            <th>Created</th>
-                            <th>Updated</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -24,17 +22,20 @@
 
                             <tr>
                                 <td>{{$post->id}}</td>
-                                <td></td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td><a href="{{url('/admin/post/edit', ['postId' => $post->id])}}">{{$post->title}}</a></td>
+                                <td>{{$post->user->email}}</td>
+                                <td>
+                                    <a class="btn-sm btn-danger" href="{{url('/admin/post/delete', ['postId' => $post->id])}}">Delete</a>
+                                </td>
                             </tr>
 
                         @endforeach
 
                     </tbody>
                 </table>
+
+                {{$posts->links('vendor.pagination.bootstrap-4')}}
+
             </div>
 
         </div>

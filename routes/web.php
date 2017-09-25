@@ -19,11 +19,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
         Route::get('list', 'PostController@showPostList');
         Route::get('add', 'PostController@showAddPost');
-        Route::get('edit', 'PostController@showEditPost');
+        Route::get('edit/{postId}', 'PostController@showEditPost');
 
         Route::post('store', 'PostController@storePost');
         Route::post('update', 'PostController@updatePost');
-        Route::get('delete', 'PostController@deletePost');
+        Route::get('delete/{postId}/{confirm?}', 'PostController@deletePost');
     });
 
     Route::group(['prefix' => 'dashboard'], function(){
@@ -31,4 +31,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('/', 'DashboardController@showDashboard');
 
     });
+});
+
+Route::group(['namespace' => 'Front'], function(){
+
+    Route::get('/', 'IndexController@showPostList');
+    Route::get('post/{postId}', 'PostController@showPost');
+
 });

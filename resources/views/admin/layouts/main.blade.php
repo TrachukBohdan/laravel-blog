@@ -28,8 +28,8 @@
 
             <div class="container-fluid">
 
-                {{--@include('admin.parts.breadcrumbs')--}}
-
+                @include('admin.parts.confirm-operation')
+                @include('admin.parts.operation-status')
                 @yield('content')
 
             </div>

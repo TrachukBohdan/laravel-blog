@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-12">
-            <h1>Add post</h1>
+            <h3>Add post</h3>
 
             {!! Form::open(['url' => 'admin/post/store' ]) !!}
 

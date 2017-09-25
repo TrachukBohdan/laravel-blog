@@ -7,13 +7,13 @@
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+                <a class="nav-link nav-link-collapse " data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Posts</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseComponents">
-                    <li><a href="navbar.html">List</a></li>
-                    <li><a href="navbar.html">Add post</a></li>
+                <ul class="sidenav-second-level " id="collapseComponents">
+                    <li><a href="{{url('/admin/post/list')}}" >List</a></li>
+                    <li><a href="{{url('/admin/post/add')}}">Add post</a></li>
                 </ul>
             </li>
 

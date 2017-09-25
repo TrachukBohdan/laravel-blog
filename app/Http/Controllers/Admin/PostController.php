@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Services\ConfirmOperation\ConfirmOperation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    /**
+     * Validation rules for the post
+     * @var array
+     */
     private $postValidationRules = [
-        'title' => 'required',
-        'article' => 'required'
+        'title'     => 'required',
+        'article'   => 'required'
     ];
 
     /**
@@ -40,7 +45,7 @@ class PostController extends Controller
      */
     public function showPostList()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(config('blog.posts_per_page'));
         return view('admin.pages.posts.post-list', compact('posts'));
     }
 
@@ -60,6 +65,7 @@ class PostController extends Controller
         ]);
 
         session()->flash('success', 'The post was added successfully');
+
         return redirect('/admin/post/list');
     }
 
@@ -70,13 +76,40 @@ class PostController extends Controller
      */
     public function updatePost(Request $request)
     {
-        dd($request->all());
+        $request->validate($this->postValidationRules);
+        $post = Post::findOrFail($request->post_id);
+
+        $post->update([
+            'title' => $request->title,
+            'article' => $request->article
+        ]);
+
+        session()->flash('success', 'The post was updated successfully');
+
         return redirect('/admin/post/list');
     }
 
-    public function deletePost($postId)
+    /**
+     * @param $postId
+     * @param null $confirm
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function deletePost($postId, $confirm = null)
     {
         $post = Post::findOrFail($postId);
+
+        if(is_null($confirm))
+        {
+            session()->flash('confirm', new ConfirmOperation(
+                'Deleting',
+                'Do you really want to delete "' . $post->title . '"',
+                url('/admin/post/delete', ['postId' => $post->id, 'confirm' => 1]),
+                url('/admin/post/list')
+            ));
+
+            return back();
+        }
+
         $post->delete();
         session()->flash('success', 'The post was deleted successfully');
         return redirect('/admin/post/list');
