@@ -26,11 +26,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
         Route::get('delete/{postId}/{confirm?}', 'PostController@deletePost');
     });
 
-    Route::group(['prefix' => 'dashboard'], function(){
+    Route::get('/', 'DashboardController@showDashboard');
 
-        Route::get('/', 'DashboardController@showDashboard');
-
-    });
 });
 
 Route::group(['namespace' => 'Front'], function(){
